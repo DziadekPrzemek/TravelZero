@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TravelZero.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />  
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"> 
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.datepicker').datepicker();
+    });
+    </script>
+</head>
+<body>
+<!--Navbar section-->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="https://bulma.io">
+                <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+              </a>
+          
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+          </nav>
+<!--Hero section - banner + fields -->
+    <section class="hero is-medium is-primary is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-offset-0 is-12">
+                        <form method="POST">
+                        {% csrf_token %}
+                            <div class="field has-addons">
+                                <div class="select column is-offset-0 is-2.5">
+                                    {{form.outboundDepartureAirportIataCode}}
+                                </div>
+                                <div class="control column is-offset-0.5 is-2.5">
+                                    {{form.outboundDepartureDateFrom}}
+                                    <p>Date: <input type="text" id="datepicker"></p>
+                                </div>
+                                <div class="control column is-offset-0.5 is-2.5" >
+                                    {{form.outboundDepartureDateTo}}
+                                </div>
+                                <div class="control column is-offset-0.5 is-2.5" >
+                                    {{form.inboundDepartureDateFrom}}
+                                </div>
+                                <div class="control column is-offset-0.5 is-2.5" >
+                                    {{form.inboundDepartureDateTo}}
+                                </div>
+                                <div class="control column is-offset-0.5 is-2.5">
+                                    <button type="submit" class="button is-info">
+                                        Szukaj
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    </div>
+<!--Searching results section-->
+    </section>
+        <section class="section">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-offset-0 is-12">
+                        {% for fares_info in fares %}
+                        <div class="box">
+                            <article class="media">
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <span class="is-size-4">Wylot: {{ fares_info.outboundDepartureAirportName }} do {{ fares_info.outboundArrivalAirportName }} 
+                                                                za: {{fares_info.outboundPriceValue}} {{fares_info.outboundCurrencyCode}}  </span>
+                                            <br>
+                                            <span class="is-size-4">Powrót: {{ fares_info.inboundDepartureAirportName }} do {{ fares_info.inboundArrivalAirportName }}  
+                                                                za: {{fares_info.inboundPriceValue}} {{fares_info.inboundCurrencyCode}}</span>
+                                            <br> 
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="media-left">
+                                    <a class="button is-success is-focused is-medium ">Razem: {{ fares_info.summaryPriceValue }} {{ fares_info.summaryCurrencyCode }}</a>
+                                </div>
+                            </article>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+    </section>
+<!--Footer section-->
+    <footer class="footer">
+        
+    </footer>
+</body>
+
+</html>
