@@ -7,6 +7,7 @@ class Flights(models.Model):
     outboundDepartureDateTo = models.DateField()
     inboundDepartureDateFrom = models.DateField()
     inboundDepartureDateTo = models.DateField()
+    arrivalAirportIataCode = models.CharField(max_length = 3)
     
     
     def __str__(self):

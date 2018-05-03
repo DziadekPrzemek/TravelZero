@@ -5,7 +5,8 @@ from .models import Flights
 
 class FlightsForm(forms.ModelForm):
 
-    AIRPORTS = (('CPH', 'Copenhagen'), ('OLB', 'Olbia'), ('VNO', 'Vilnius'), ('FCO', 'Rome Fiumicino'), 
+    AIRPORTS =  (
+                ('wybierz','Wybierz'), ('CPH', 'Copenhagen'), ('OLB', 'Olbia'), ('VNO', 'Vilnius'), ('FCO', 'Rome Fiumicino'), 
                 ('NCL', 'Newcastle'), ('DUS', 'Dusseldorf Int.'),('RMI', 'Rimini'), ('KIR', 'Kerry'), 
                 ('SJU', 'San Juan'), ('BRU', 'Brussels'), ('TUF', 'Tours Loire Valley'), 
                 ('VVI', 'Santa Cruz'), ('EDI', 'Edinburgh'), ('CCF', 'Carcassonne'), 
@@ -71,18 +72,20 @@ class FlightsForm(forms.ModelForm):
                 ('PMO', 'Palermo'), ('DUB', 'Dublin'), ('SDR', 'Santander'), ('CRA', 'Craiova'), 
                 ('BOS', 'Boston'))
 
-    outboundDepartureAirportIataCode = forms.ChoiceField(choices=AIRPORTS, required=True )
+    outboundDepartureAirportIataCode = forms.ChoiceField(choices=AIRPORTS, required=True)
+    arrivalAirportIataCode = forms.ChoiceField(choices=AIRPORTS, required=True)
 
 
     class Meta:
         model = Flights
-        fields = ['outboundDepartureAirportIataCode','outboundDepartureDateFrom','outboundDepartureDateTo',
+        fields = ['outboundDepartureAirportIataCode','arrivalAirportIataCode','outboundDepartureDateFrom','outboundDepartureDateTo',
                     'inboundDepartureDateFrom', 'inboundDepartureDateTo']   
         widgets = {'outboundDepartureAirportIataCode' : TextInput(attrs={'class' : 'input', 'placeholder' : 'IATAe'}),
-                    'outboundDepartureDateFrom' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data'}),
-                    'outboundDepartureDateTo' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data'}),    
-                    'inboundDepartureDateFrom' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data'}),   
-                    'inboundDepartureDateTo' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data'}), 
+                    'arrivalAirportIataCode' : TextInput(attrs={'class' : 'input', 'placeholder' : 'IATAe'}),
+                    'outboundDepartureDateFrom' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data wyjazdu'}),
+                    'outboundDepartureDateTo' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data wyjazdu'}),    
+                    'inboundDepartureDateFrom' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data powrotu'}),   
+                    'inboundDepartureDateTo' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data powrotu'}), 
 
         }
     

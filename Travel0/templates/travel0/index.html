@@ -7,14 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TravelZero.com</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />  
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"> 
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-    <script>
-    $(document).ready(function() {
-        $('.datepicker').datepicker();
-    });
-    </script>
 </head>
 <body>
 <!--Navbar section-->
@@ -43,15 +35,21 @@
                                 <div class="select column is-offset-0 is-2.5">
                                     {{form.outboundDepartureAirportIataCode}}
                                 </div>
+                                <div class="select column is-offset-0 is-2.5">
+                                        {{form.arrivalAirportIataCode}}
+                                    </div>
                                 <div class="control column is-offset-0.5 is-2.5">
                                     {{form.outboundDepartureDateFrom}}
-                                    <p>Date: <input type="text" id="datepicker"></p>
                                 </div>
                                 <div class="control column is-offset-0.5 is-2.5" >
                                     {{form.outboundDepartureDateTo}}
                                 </div>
                                 <div class="control column is-offset-0.5 is-2.5" >
                                     {{form.inboundDepartureDateFrom}}
+                                    <label class="checkbox">
+                                            <input type="checkbox">
+                                            Wybierz zakres dat
+                                    </label>
                                 </div>
                                 <div class="control column is-offset-0.5 is-2.5" >
                                     {{form.inboundDepartureDateTo}}

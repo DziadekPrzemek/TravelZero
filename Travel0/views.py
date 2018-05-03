@@ -8,21 +8,22 @@ from .forms import FlightsForm
 
 def index(request):
     
-    apikey = ""
+    apikey = "mBZ3XsuiZc6cuqT0cu8xPJt50wZcqxRG"
+    url1 = 'http://apigateway.ryanair.com/pub/v1/farefinder/3/roundTripFares?departureAirportIataCode={}&arrivalAirportIataCode={}&outboundDepartureDateFrom={}&outboundDepartureDateTo={}&currency=PLN&language=pl&inboundDepartureDateFrom={}&inboundDepartureDateTo={}&apikey={}'
     url = 'http://apigateway.ryanair.com/pub/v1/farefinder/3/roundTripFares?departureAirportIataCode={}&outboundDepartureDateFrom={}&outboundDepartureDateTo={}&currency=PLN&language=pl&inboundDepartureDateFrom={}&inboundDepartureDateTo={}&apikey={}'
 
     
     if request.method == 'POST': # If the form has been submitted...
         form = FlightsForm(request.POST) # A form bound to the POST data
         if form.is_valid(): 
-
+            
             departureAirportIataCodes = form.cleaned_data['outboundDepartureAirportIataCode']
             outboundDepartureDateFrom = form.cleaned_data['outboundDepartureDateFrom']
             outboundDepartureDateTo = form.cleaned_data['outboundDepartureDateTo']
             inboundDepartureDateFrom = form.cleaned_data['inboundDepartureDateFrom']
             inboundDepartureDateTo = form.cleaned_data['inboundDepartureDateTo']
-
-            response = requests.get(url.format(departureAirportIataCodes,outboundDepartureDateFrom,outboundDepartureDateTo,inboundDepartureDateFrom,inboundDepartureDateTo,apikey)).json()
+            arrivalAirportIataCode = form.cleaned_data['arrivalAirportIataCode']
+            response = requests.get(url.format(departureAirportIataCodes,arrivalAirportIataCode,outboundDepartureDateFrom,outboundDepartureDateTo,inboundDepartureDateFrom,inboundDepartureDateTo,apikey)).json()
             items = len(response["fares"])
 
             fares = []
