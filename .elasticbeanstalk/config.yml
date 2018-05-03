@@ -3,8 +3,8 @@ branch-defaults:
     environment: Travelzero-env
 environment-defaults:
   Travelzero-env:
-    branch: master
-    repository: origin
+    branch: null
+    repository: null
 global:
   application_name: TravelZero
   default_ec2_keyname: null
