@@ -25,7 +25,7 @@ SECRET_KEY = 'wy90a((p0o&+uf@_=wu13(1am@c_iq3+-eee63d$q@0nx_@qfr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['travelzero.eu-west-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['travelzero.eu-west-1.elasticbeanstalk.com', '127.0.0.1']
 
 
 # Application definition

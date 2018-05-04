@@ -9,7 +9,6 @@ from .forms import FlightsForm
 def index(request):
     
     apikey = "mBZ3XsuiZc6cuqT0cu8xPJt50wZcqxRG"
-    url1 = 'http://apigateway.ryanair.com/pub/v1/farefinder/3/roundTripFares?departureAirportIataCode={}&arrivalAirportIataCode={}&outboundDepartureDateFrom={}&outboundDepartureDateTo={}&currency=PLN&language=pl&inboundDepartureDateFrom={}&inboundDepartureDateTo={}&apikey={}'
     url = 'http://apigateway.ryanair.com/pub/v1/farefinder/3/roundTripFares?departureAirportIataCode={}&outboundDepartureDateFrom={}&outboundDepartureDateTo={}&currency=PLN&language=pl&inboundDepartureDateFrom={}&inboundDepartureDateTo={}&apikey={}'
 
     
@@ -22,8 +21,9 @@ def index(request):
             outboundDepartureDateTo = form.cleaned_data['outboundDepartureDateTo']
             inboundDepartureDateFrom = form.cleaned_data['inboundDepartureDateFrom']
             inboundDepartureDateTo = form.cleaned_data['inboundDepartureDateTo']
-            arrivalAirportIataCode = form.cleaned_data['arrivalAirportIataCode']
-            response = requests.get(url.format(departureAirportIataCodes,arrivalAirportIataCode,outboundDepartureDateFrom,outboundDepartureDateTo,inboundDepartureDateFrom,inboundDepartureDateTo,apikey)).json()
+            response = requests.get(url.format(departureAirportIataCodes, outboundDepartureDateFrom, 
+                                    outboundDepartureDateTo, inboundDepartureDateFrom, inboundDepartureDateTo,
+                                    apikey)).json()
             items = len(response["fares"])
 
             fares = []

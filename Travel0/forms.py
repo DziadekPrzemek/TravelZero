@@ -73,15 +73,13 @@ class FlightsForm(forms.ModelForm):
                 ('BOS', 'Boston'))
 
     outboundDepartureAirportIataCode = forms.ChoiceField(choices=AIRPORTS, required=True)
-    arrivalAirportIataCode = forms.ChoiceField(choices=AIRPORTS, required=True)
 
 
     class Meta:
         model = Flights
-        fields = ['outboundDepartureAirportIataCode','arrivalAirportIataCode','outboundDepartureDateFrom','outboundDepartureDateTo',
+        fields = ['outboundDepartureAirportIataCode', 'outboundDepartureDateFrom', 'outboundDepartureDateTo',
                     'inboundDepartureDateFrom', 'inboundDepartureDateTo']   
         widgets = {'outboundDepartureAirportIataCode' : TextInput(attrs={'class' : 'input', 'placeholder' : 'IATAe'}),
-                    'arrivalAirportIataCode' : TextInput(attrs={'class' : 'input', 'placeholder' : 'IATAe'}),
                     'outboundDepartureDateFrom' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data wyjazdu'}),
                     'outboundDepartureDateTo' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data wyjazdu'}),    
                     'inboundDepartureDateFrom' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data powrotu'}),   
