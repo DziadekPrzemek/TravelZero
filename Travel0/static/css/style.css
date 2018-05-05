@@ -13,9 +13,25 @@
     width: auto;
   }
 
+.container-full-bg{
+  background: url('/static/img/jumbobg.jpeg') no-repeat center center;
+  position: inherit;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%; /*same height as jumbotron */
+  z-index: -1;
+  
+}
 .jumbotron {  
-    background-color: grey;
+  height: 100%;
+  background:transparent;
+  
+
      }
+.col-md-3{
+
+  
+}
 
 .btn{
   margin-left: 10px;

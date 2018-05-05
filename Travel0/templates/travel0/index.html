@@ -21,6 +21,8 @@
     <!--Load CSS styles-->
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
+    <link rel="icon" href="{% static 'img/icon.png' %}">
   </head>
 <body>
     <!--Navbar section-->
@@ -42,7 +44,6 @@
         <div class="jumbotron">
             <div class="container">
                 <form method="POST">
-                  
                     {% csrf_token %}
                     <div class="row">
                          <div class="col-md-3 ">
@@ -110,7 +111,5 @@
             {% endfor %}
         </div>
     </section>
-    
-   
   </body>
 </html>
