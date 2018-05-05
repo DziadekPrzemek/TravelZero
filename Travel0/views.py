@@ -3,15 +3,12 @@ from django.shortcuts import render
 from .models import Flights
 from .forms import FlightsForm
 
-
-# Create your views here.
-
 def index(request):
     
-    apikey = ""
+    apikey = "mBZ3XsuiZc6cuqT0cu8xPJt50wZcqxRG"
     url = 'http://apigateway.ryanair.com/pub/v1/farefinder/3/roundTripFares?departureAirportIataCode={}&outboundDepartureDateFrom={}&outboundDepartureDateTo={}&currency=PLN&language=pl&inboundDepartureDateFrom={}&inboundDepartureDateTo={}&apikey={}'
 
-    
+
     if request.method == 'POST': # If the form has been submitted...
         form = FlightsForm(request.POST) # A form bound to the POST data
         if form.is_valid(): 
@@ -45,7 +42,7 @@ def index(request):
                     "outboundArrivalDate" : response["fares"][i]['outbound']['arrivalDate'],
                     "outboundPriceValue" : response["fares"][i]['outbound']['price']['value'],
                     "outboundCurrencyCode" : response["fares"][i]['outbound']['price']['currencyCode'],
-                        'date' : outboundArrivalDate.
+                    
                     "inboundDepartureAirportIataCode" : response["fares"][i]['inbound']['departureAirport']['iataCode'],
                     "inboundDepartureAirportName" : response["fares"][i]['inbound']['departureAirport']['name'],
                     "inboundDepartureAirportSeoName" : response["fares"][i]['inbound']['departureAirport']['seoName'],
