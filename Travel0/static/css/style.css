@@ -1,0 +1,24 @@
+
+.navbar{
+  margin-bottom: 0px;
+  background-color: white;
+  font-weight: bold;
+}
+
+.navbar-brand {
+    padding: 0px;
+  }
+  .navbar-brand>img {
+    height: 100%;
+    width: auto;
+  }
+
+.jumbotron {  
+    background-color: grey;
+     }
+
+.btn{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+

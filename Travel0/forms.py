@@ -3,10 +3,12 @@ from django.forms import ModelForm, TextInput, DateInput
 from .models import Flights
 
 
+
 class FlightsForm(forms.ModelForm):
 
     AIRPORTS =  (
-                ('wybierz','Wybierz'), ('CPH', 'Copenhagen'), ('OLB', 'Olbia'), ('VNO', 'Vilnius'), ('FCO', 'Rome Fiumicino'), 
+                ('WMI', 'Warsaw Modlin'), ('KRK', 'Krakow'), ('LUZ', 'Lublin'), ('RZE', 'Rzeszow'), ('GDN', 'Gdansk'), 
+                ('POZ', 'Poznan'), ('CPH', 'Copenhagen'), ('OLB', 'Olbia'), ('VNO', 'Vilnius'), ('FCO', 'Rome Fiumicino'), 
                 ('NCL', 'Newcastle'), ('DUS', 'Dusseldorf Int.'),('RMI', 'Rimini'), ('KIR', 'Kerry'), 
                 ('SJU', 'San Juan'), ('BRU', 'Brussels'), ('TUF', 'Tours Loire Valley'), 
                 ('VVI', 'Santa Cruz'), ('EDI', 'Edinburgh'), ('CCF', 'Carcassonne'), 
@@ -24,13 +26,13 @@ class FlightsForm(forms.ModelForm):
                 ('ZAD', 'Zadar'), ('LDE', 'Lourdes'), ('SDQ', 'Santo Domingo'), ('CFU', 'Corfu'), 
                 ('AOI', 'Ancona'), ('VCE', 'Venice M.Polo'), ('BRQ', 'Brno'), ('PDL', 'Ponta Delgada'), 
                 ('TSF', 'Venice Treviso'), ('TER', 'Terceira Lajes'), ('BES', 'Brest'), ('RDZ', 'Rodez'), 
-                ('EZE', 'Buenos Aires'), ('LUZ', 'Lublin'), ('OTP', 'Bucharest'),('MAN', 'Manchester'), 
+                ('EZE', 'Buenos Aires'),  ('OTP', 'Bucharest'),('MAN', 'Manchester'), 
                 ('BOG', 'Bogota'), ('ASU', 'Asuncion'), ('SZG', 'Salzburg'), ('ORK', 'Cork'), 
                 ('GRO', 'Barcelona Girona'), ('VLC', 'Valencia'), ('OPO', 'Porto'), 
-                ('MXP', 'Milan Malpensa'), ('RZE', 'Rzeszow'), ('AGP', 'Malaga'), ('KBP', 'Kiev-Boryspil'), 
+                ('MXP', 'Milan Malpensa'), ('AGP', 'Malaga'), ('KBP', 'Kiev-Boryspil'), 
                 ('PUY', 'Pula'),('CFE', 'Clermont'), ('PMF', 'Parma'), ('BLQ', 'Bologna'), ('CTA', 'Catania'), 
                 ('TLS', 'Toulouse'), ('VXO', 'Växjö Småland'), ('XCR', 'Paris Vatry'), ('FEZ', 'Fez'), 
-                ('GDN', 'Gdansk'), ('POZ', 'Poznan'), ('CUN', 'Cancun'), ('AHO', 'Alghero'), 
+                ('CUN', 'Cancun'), ('AHO', 'Alghero'), 
                 ('NRN', 'Dusseldorf Weeze'), ('TRN', 'Turin'), ('OUD', 'Oujda'), ('EGC', 'Bergerac'), 
                 ('AMM', 'Amman Jordan'), ('ORY', 'Paris Orly'), ('GLA', 'Glasgow'), ('TFN', 'Tenerife North'), 
                 ('LEI', 'Almeria'), ('CRV', 'Crotone'), ('BRI', 'Bari'), ('PEG', 'Perugia'), 
@@ -47,7 +49,7 @@ class FlightsForm(forms.ModelForm):
                 ('LIG', 'Limoges'), ('BHX', 'Birmingham'), ('OSL', 'Oslo'), ('LNZ', 'Linz'), 
                 ('HER', 'Heraklion Crete'), ('INN', 'Innsbruck'), ('FUE', 'Fuerteventura'), 
                 ('LRH', 'La Rochelle'), ('ALC', 'Alicante'), ('PAD', 'Paderborn'), ('INI', 'Nis'), 
-                ('GRZ', 'Graz'), ('KRK', 'Krakow'), ('CGN', 'Cologne'), ('BFS', 'Belfast International'), 
+                ('GRZ', 'Graz'),  ('CGN', 'Cologne'), ('BFS', 'Belfast International'), 
                 ('XRY', 'Jerez'), ('VIT', 'Vitoria (Basque Country)'), ('TNG', 'Tangier'), ('GOA', 'Genoa'), 
                 ('BSL', 'Basel'), ('SVQ', 'Seville'), ('LRT', 'Lorient'), ('NCE', 'Nice'), ('BCN', 'Barcelona'),
                 ('MLA', 'Malta'), ('LCA', 'Larnaca'), ('TMP', 'Tampere'), ('LIM', 'Lima'), ('PIS', 'Poitiers'),
@@ -57,7 +59,7 @@ class FlightsForm(forms.ModelForm):
                 ('MPL', 'Montpellier'), ('LCG', 'A Coruna'), ('BUD', 'Budapest'), ('LTN', 'London Luton'), 
                 ('LPA', 'Gran Canaria'), ('BOD', 'Bordeaux'), ('JFK', 'New York (JFK)'), ('LCJ', 'Lodz'), 
                 ('PLQ', 'Palanga'), ('PSR', 'Pescara'), ('WRO', 'Wroclaw'), ('VIE', 'Vienna'), 
-                ('DOL', 'Deauville'), ('PDV', 'Plovdiv'), ('PGF', 'Perpignan'), ('WMI', 'Warsaw Modlin'), 
+                ('DOL', 'Deauville'), ('PDV', 'Plovdiv'), ('PGF', 'Perpignan'),  
                 ('SSA', 'Salvador'), ('HAJ', 'Hannover'), ('FMM', 'Memmingen'), ('NDR', 'Nador'), 
                 ('PIK', 'Glasgow Prestwick'), ('OSR', 'Ostrava'), ('BVA', 'Paris Beauvais'), 
                 ('KTW', 'Katowice'), ('CIY', 'Comiso'), ('NYO', 'Stockholm Skavsta'), 
@@ -72,20 +74,27 @@ class FlightsForm(forms.ModelForm):
                 ('PMO', 'Palermo'), ('DUB', 'Dublin'), ('SDR', 'Santander'), ('CRA', 'Craiova'), 
                 ('BOS', 'Boston'))
 
-    outboundDepartureAirportIataCode = forms.ChoiceField(choices=AIRPORTS, required=True)
+    outboundDepartureAirportIataCode = forms.ChoiceField(widget=forms.Select(
+        attrs={'class': 'btn'}),choices=AIRPORTS, required=True)
+    
+    outboundDepartureDateFrom = forms.DateField(widget=forms.widgets.DateInput(
+        attrs={'type': 'date', 'class': 'btn'}), required=True)
 
+    outboundDepartureDateTo = forms.DateField(widget=forms.widgets.DateInput(
+        attrs={'type': 'date', 'class': 'btn'}), required=True)
+
+    inboundDepartureDateFrom = forms.DateField(widget=forms.widgets.DateInput(
+        attrs={'type': 'date', 'class': 'btn'}), required=True)
+    
+    inboundDepartureDateTo = forms.DateField(widget=forms.widgets.DateInput(
+        attrs={'type': 'date', 'class': 'btn'}), required=True)
 
     class Meta:
         model = Flights
         fields = ['outboundDepartureAirportIataCode', 'outboundDepartureDateFrom', 'outboundDepartureDateTo',
                     'inboundDepartureDateFrom', 'inboundDepartureDateTo']   
-        widgets = {'outboundDepartureAirportIataCode' : TextInput(attrs={'class' : 'input', 'placeholder' : 'IATAe'}),
-                    'outboundDepartureDateFrom' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data wyjazdu'}),
-                    'outboundDepartureDateTo' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data wyjazdu'}),    
-                    'inboundDepartureDateFrom' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data powrotu'}),   
-                    'inboundDepartureDateTo' : DateInput(attrs={'class' : 'input', 'placeholder' : 'Data powrotu'}), 
 
-        }
+    
     
 
         

@@ -24,7 +24,9 @@ def index(request):
             response = requests.get(url.format(departureAirportIataCodes, outboundDepartureDateFrom, 
                                     outboundDepartureDateTo, inboundDepartureDateFrom, inboundDepartureDateTo,
                                     apikey)).json()
+           
             items = len(response["fares"])
+
 
             fares = []
 
