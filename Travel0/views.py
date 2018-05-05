@@ -8,7 +8,7 @@ from .forms import FlightsForm
 
 def index(request):
     
-    apikey = "mBZ3XsuiZc6cuqT0cu8xPJt50wZcqxRG"
+    apikey = ""
     url = 'http://apigateway.ryanair.com/pub/v1/farefinder/3/roundTripFares?departureAirportIataCode={}&outboundDepartureDateFrom={}&outboundDepartureDateTo={}&currency=PLN&language=pl&inboundDepartureDateFrom={}&inboundDepartureDateTo={}&apikey={}'
 
     
@@ -45,7 +45,7 @@ def index(request):
                     "outboundArrivalDate" : response["fares"][i]['outbound']['arrivalDate'],
                     "outboundPriceValue" : response["fares"][i]['outbound']['price']['value'],
                     "outboundCurrencyCode" : response["fares"][i]['outbound']['price']['currencyCode'],
-                        
+                        'date' : outboundArrivalDate.
                     "inboundDepartureAirportIataCode" : response["fares"][i]['inbound']['departureAirport']['iataCode'],
                     "inboundDepartureAirportName" : response["fares"][i]['inbound']['departureAirport']['name'],
                     "inboundDepartureAirportSeoName" : response["fares"][i]['inbound']['departureAirport']['seoName'],
