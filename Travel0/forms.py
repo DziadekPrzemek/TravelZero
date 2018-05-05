@@ -1,10 +1,12 @@
 from django import forms  
 from django.forms import ModelForm, TextInput, DateInput
 from .models import Flights
+from datetime import date, timedelta
 
 
 
 class FlightsForm(forms.ModelForm):
+
 
     AIRPORTS =  (
                 ('WMI', 'Warsaw Modlin'), ('KRK', 'Krakow'), ('LUZ', 'Lublin'), ('RZE', 'Rzeszow'), ('GDN', 'Gdansk'), 
@@ -77,16 +79,16 @@ class FlightsForm(forms.ModelForm):
     outboundDepartureAirportIataCode = forms.ChoiceField(widget=forms.Select(
         attrs={'class': 'btn'}),choices=AIRPORTS, required=True)
     
-    outboundDepartureDateFrom = forms.DateField(widget=forms.widgets.DateInput(
-        attrs={'type': 'date', 'class': 'btn'}), required=True)
+    outboundDepartureDateFrom = forms.DateField(initial=date.today(), widget=forms.widgets.DateInput(
+        attrs={'type': 'date', 'class': 'btn'}), required=True )
 
-    outboundDepartureDateTo = forms.DateField(widget=forms.widgets.DateInput(
-        attrs={'type': 'date', 'class': 'btn'}), required=True)
-
-    inboundDepartureDateFrom = forms.DateField(widget=forms.widgets.DateInput(
+    outboundDepartureDateTo = forms.DateField(initial=date.today(), widget=forms.widgets.DateInput(
+        attrs={'type': 'date', 'class': 'btn'}), required=True )
+ 
+    inboundDepartureDateFrom = forms.DateField(initial=date.today() + timedelta(days=1), widget=forms.widgets.DateInput(
         attrs={'type': 'date', 'class': 'btn'}), required=True)
     
-    inboundDepartureDateTo = forms.DateField(widget=forms.widgets.DateInput(
+    inboundDepartureDateTo = forms.DateField(initial=date.today() + timedelta(days=1), widget=forms.widgets.DateInput(
         attrs={'type': 'date', 'class': 'btn'}), required=True)
 
     class Meta:

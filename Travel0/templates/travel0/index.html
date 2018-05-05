@@ -1,70 +1,68 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>TravelZero Project</title>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>TravelZero Project</title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    
-    <!--Datepicker -->
-    
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        
+        <!--Load CSS styles-->
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 
-    <!--Load CSS styles-->
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-
-    <link rel="icon" href="{% static 'img/icon.png' %}">
-  </head>
-<body>
-    <!--Navbar section-->
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand"><img src="{% static "img/logo2.png" %}" alt="TravelZero Logo"/>
-                </a>
+        <link rel="icon" href="{% static 'img/icon.png' %}">
+    </head>
+    <body>
+        <!--Navbar section-->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand"><img src="{% static "img/logo2.png" %}" alt="TravelZero Logo"/>
+                    </a>
+                </div>
+                <div id="navbar1" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                    <li><a href="/">Strona główna</a></li>
+                    </ul>
+                </div>
             </div>
-            <div id="navbar1" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                  <li><a href="#">Home</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!--Search panel-->
-    <div class="container-full-bg">
+        </nav>
+        <!--Search panel-->
+        <div class="container-full-bg">
         <div class="jumbotron">
             <div class="container">
                 <form method="POST">
                     {% csrf_token %}
                     <div class="row">
-                         <div class="col-md-3 ">
-                             {{form.outboundDepartureAirportIataCode}}
+                         <div class="col-md-3 dsc">
+                            <div id="description">Wybierz lotnisko:</div>
+                            {{form.outboundDepartureAirportIataCode}}
                         </div>
-                        <div class="col-md-2">
-                                {{form.outboundDepartureDateFrom}}
+                        <div class="col-md-2 dsc">
+                            <div id="description">Wylot od:</div>
+                            {{form.outboundDepartureDateFrom}}
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 dsc">
+                            <div id="description">Wylot do:</div>
                             {{form.outboundDepartureDateTo}}
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 dsc">
+                            <div id="description">Powrót od:</div>
                             {{form.inboundDepartureDateFrom}}
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 dsc">
+                            <div id="description">Powrót do:</div>
                             {{form.inboundDepartureDateTo}}
                         </div>
-                        <div class="col-md-1">
-                            <button type="submit" class="btn btn-success">
-                                Szukaj
-                            </button>
+                        <div class="col-md-1 dsc">
+                            <br>
+                            <button type="submit" class="btn btn-success">Szukaj</button>
                         </div>
                     </div>
                 </form>
@@ -72,44 +70,76 @@
         </div>
     </div>
     <section class="section">
-        <div class="container">
+        <div class="container results">
             {% for fares_info in fares %}
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse">
-                                        Wylot: {{ fares_info.outboundDepartureAirportName }} do {{ fares_info.outboundArrivalAirportName }} 
-                                        za: {{fares_info.outboundPriceValue}} {{fares_info.outboundCurrencyCode}}
-                                        <button type="submit" class="btn btn-success pull-right">Razem: {{ fares_info.summaryPriceValue }} {{ fares_info.summaryCurrencyCode }}</button>
-                                        <br>
-                                        Powrót: {{ fares_info.inboundDepartureAirportName }} do {{ fares_info.inboundArrivalAirportName }}  
-                                        za: {{fares_info.inboundPriceValue}} {{fares_info.inboundCurrencyCode}}
+                                Wylot: {{ fares_info.outboundDepartureAirportName }} do {{ fares_info.outboundArrivalAirportName }} 
+                                za: {{fares_info.outboundPriceValue}} {{fares_info.outboundCurrencyCode}}
+                                <button type="submit" class="btn btn-success pull-right">Razem: {{ fares_info.summaryPriceValue }} {{ fares_info.summaryCurrencyCode }}</button>
+                                <br>
+                                Powrót: {{ fares_info.inboundDepartureAirportName }} do {{ fares_info.inboundArrivalAirportName }}  
+                                za: {{fares_info.inboundPriceValue}} {{fares_info.inboundCurrencyCode}}
                             </a>
                         </h4>
                     </div>
                     <div id="collapse" class="panel-collapse collapse">
                         <div class="panel-body">
-                                Wyjazd:
-                                <br>
-                                Wylot z {{ fares_info.outboundDepartureAirportName }}: {{fares_info.outboundDepartureDate}}
-                                <br>
-                                Przylot do {{ fares_info.outboundArrivalAirportName}}: {{fares_info.outboundArrivalDate}}
-                                <hr>
-                                Powrót:
-                                <br>
-                                Wylot z {{ fares_info.inboundDepartureAirportName }}: {{fares_info.inboundDepartureDate}}
-                                <br>
-                                Przylot do {{ fares_info.inboundArrivalAirportName}}: {{fares_info.inboundArrivalDate}}
-                                <br>
-                            
-                                
-                            </div>
+                            Wyjazd:
+                            <br>
+                            Wylot z {{ fares_info.outboundDepartureAirportName }}: {{fares_info.outboundDepartureDate}}
+                            <br>
+                            Przylot do {{ fares_info.outboundArrivalAirportName}}: {{fares_info.outboundArrivalDate}}
+                            <hr>
+                            Powrót:
+                            <br>
+                            Wylot z {{ fares_info.inboundDepartureAirportName }}: {{fares_info.inboundDepartureDate}}
+                            <br>
+                            Przylot do {{ fares_info.inboundArrivalAirportName}}: {{fares_info.inboundArrivalDate}}
+                            <br>
+                        </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </section>
+    <!--Footer-->
+    <div class="footer">
+        <hr class="rgba-white-light" style="margin: 0 15%;">
+            <footer class="page-footer font-small">
+                <!--Footer Links-->
+                <div class="container">
+                    <!--Grid row-->
+                    <div class="row pt-5 mb-3 text-center d-flex justify-content-center">
+                        <!--Grid column-->
+                        <div class="col-md-2 mb-3 col-md-offset-4">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <a href="#!">O projekcie</a>
+                            </h6>
+                        </div>
+                        <!--Grid column-->
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <a href="#!">Kontakt</a>
+                            </h6>
+                        </div>
+                    </div>
+                    <!--Grid row-->
+                    <hr class="rgba-white-light" style="margin: 0 15%;">
+                    <div class="row pb-3"></div>
+                    <!--Copyright-->
+                    <div class="footer-copyright py-3 text-center">
+                        ©2018 Copyright:
+                    <a href=""> DziadekPrzemek</a>
+                </div>
+        <!--/Copyright-->
+            </div>
+        </footer>
+    <!--/Footer-->         
+    </div>
   </body>
 </html>
