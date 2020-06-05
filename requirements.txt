@@ -5,7 +5,7 @@ cement==2.8.2
 certifi==2018.4.16
 chardet==3.0.4
 colorama==0.3.7
-Django==2.0.4
+Django==2.2.13
 django-javascript-settings==1.1.2
 django-widget-tweaks==1.4.2
 dockerpty==0.4.1
