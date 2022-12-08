@@ -2,7 +2,7 @@ astroid==1.6.3
 awsebcli==3.12.4
 botocore==1.10.12
 cement==2.8.2
-certifi==2018.4.16
+certifi==2022.12.7
 chardet==3.0.4
 colorama==0.3.7
 Django==2.0.4
